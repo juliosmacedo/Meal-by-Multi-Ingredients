@@ -1,28 +1,30 @@
 const app = document.getElementById('root')
 let request = new XMLHttpRequest()
 let request2 = new XMLHttpRequest()
+let request3 = new XMLHttpRequest()
 const container = document.createElement('div')
 container.setAttribute('class', 'container')
 app.appendChild(container)
 const select1 = document.getElementById('ingredient1');
-const select3 = document.getElementById('ingredient3');
 const select2 = document.getElementById('ingredient2');
+const select3 = document.getElementById('ingredient3');
+const categorySelect = document.getElementById('categorySelect');
 const mealList = document.getElementById('mealList');
 const get_meal_btn = document.getElementById('gobtn');
 const chooseRecipeText = document.getElementById('h3');
 const noRecipesAlert = document.getElementById('norecipes');
 
 
+
+
+/// Ingredient fetch amd create ingredient list ///
 request.open('GET', 'https://www.themealdb.com/api/json/v1/1/list.php?i=list', true)
-
-
 request.onload = function () {
   var data = JSON.parse(this.response);
   let options = [];
   if (request.status >= 200 && request.status < 400) {
     for (let i=0; i<data.meals.length; i++) {
 		options.push(`<option value='${data.meals[i].strIngredient}'>${data.meals[i].strIngredient}</option>`)
-		
 	}
   } else {
     const errorMessage = document.createElement('marquee')
@@ -34,8 +36,29 @@ request.onload = function () {
   select3.innerHTML = options;
   select2.innerHTML = options;
 }
-
 request.send()
+
+
+/// Category fetch amd create Category list ///
+request3.open('GET', 'https://www.themealdb.com/api/json/v1/1/categories.php', true)
+request3.onload = function () {
+	var data = JSON.parse(this.response);
+	let categoryOptions = [];
+	console.log(data.categories.length)
+	if (request3.status >= 200 && request3.status < 400) {
+	  for (let i=0; i<data.categories.length; i++) {
+		categoryOptions.push(`<option value='${data.categories[i].strCategory}'>${data.categories[i].strCategory}</option>`)
+	  }
+	} else {
+	  const errorMessage = document.createElement('marquee')
+	  errorMessage.textContent = `Gah, it's not working!`
+	  app.appendChild(errorMessage)
+	}
+	categoryOptions.unshift('<option value="">Select an ingredient...</option>')
+	categorySelect.innerHTML = categoryOptions ;
+  }
+request3.send()
+  
 
 
 //// TESTS //////
@@ -68,10 +91,11 @@ get_meal_btn.addEventListener('click', () => {
   	if (ingredient1 !== "") {combinedIngredients.push(ingredient1)}
 	if (ingredient2 !== "") {combinedIngredients.push(ingredient2)}
 	if (ingredient3 !== "") {combinedIngredients.push(ingredient3)}
-  console.log(combinedIngredients.join(','))
+
+  const uniqueIngredients = new Set(combinedIngredients)
   const mealOptions = [];
 
-  request2.open('GET', `https://www.themealdb.com/api/json/v2/9973533/filter.php?i=${combinedIngredients.join(',')}`, true)
+  request2.open('GET', `https://www.themealdb.com/api/json/v2/9973533/filter.php?i=${[...uniqueIngredients].join(',')}`, true)
   request2.send()
   request2.onload = function () {
     var data = JSON.parse(this.response);
