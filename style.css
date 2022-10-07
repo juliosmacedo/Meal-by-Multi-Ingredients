@@ -1,0 +1,316 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+#root {
+    max-width: 1200px;
+    margin: 3rem auto;
+    font-family: 'Montserrat';
+  }
+
+  h2 {
+    font-size: 3em;
+    font-family: 'Montserrat';
+    color: #2b2b2b;
+    text-align: center;
+    padding: 0px;
+    margin: 0.7em 0.1em 0.1em 0.1em;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .card {
+    margin: 1rem;
+    border: 1px solid gray;
+    border-radius: 25px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h3 {
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    margin: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    padding-left: 1px;
+    margin-block-end: auto
+  }
+
+  h4 {
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    margin: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    padding-left: 1px;
+    margin-block-end: auto
+  }
+
+  img {
+    max-width: 100%;
+    border: 2px solid #2b2b2b;
+    border-radius: 30px;
+    margin: 30px 0 10px 0;
+  }
+  
+  h1 {
+    font-family: 'Montserrat';
+    font-size: 4.1rem;
+    margin: 0.2rem;
+    text-align: center;
+  }
+
+  h6 {
+    font-family: 'Montserrat';
+    font-size: 4rem;
+    margin: 1.5rem;
+    text-align: center;
+  }
+
+  h2, a {
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    margin: 0.2rem;
+    text-align: center;
+  }
+
+  a {
+    margin-top: 15px;
+  }
+
+  h5 {
+    font-family: 'Montserrat';
+    font-size: 2.1rem;
+    margin: 0.2rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-family: 'Bebas Neue';
+    font-style: italic;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .row2 {
+    margin: auto;
+  }
+
+  p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.4em;
+    text-align: left;
+    margin: 1.5rem
+  }
+
+  h7 {
+    margin: auto;
+    margin-top: 3vh;
+    font-size: 2rem;
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    font-family: 'Bebas Neue';
+    font-size: 1.5em;
+    padding: 0.8rem;
+    margin: 0.2rem;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background-color: #a87426;
+  }
+
+  label, input {
+    font-family: 'Bebas Neue';
+    font-size: 1.5em;
+    padding: 10px;
+    line-height: 1.4rem;
+  }
+
+  .u-full-width {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    width: 24vh;
+    box-sizing: border-box;
+    margin: 1rem;
+    font-size: 1.2rem;
+  }
+
+    
+
+
+body {
+    background-color: #F6E6C0;
+}
+
+
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+
+
+
+
+
+.mealList {
+  text-align: center;
+  column-count: auto;
+  font-family: 'Montserrat';
+  font-size: 1rem;
+}
+
+.recipeButton {
+  width: 20rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+}
+
+.pwrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+.button-54 {
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 1rem;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20rem;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+  .card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+
+h2 {
+  font-size: 2rem;
+}
+h1 {
+  font-size: 4rem;
+  margin: 0rem;
+  text-align: center;
+  padding: 10px;
+  line-height: 4rem;
+  font-weight: 1000;
+}
+
+p {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+h5 {
+  margin-top: 1rem;
+}
+
+.pwrapper {
+  justify-content: space-around;
+}
+
+iframe {
+  width: 350px;
+}
+
+.mealList {
+  padding-inline-start: 0;
+}
+
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    flex: 1 1 calc(33% - 2rem);
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  .card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+
+  @media (min-width: 768px) {
+    .button-74 {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+    .button-54 {
+      padding: 1rem;
+    }
+  }
+}
