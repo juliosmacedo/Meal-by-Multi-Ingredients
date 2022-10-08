@@ -15,14 +15,28 @@
 
   <body>
     <div class="headerdiv" >
-    <h6>Recipe Searcher</h6>
-    <header>
-    <label for="ingredients">Choose an ingredient: <br> (574 available)</label>
-    <select class="u-full-width" id="ingredient1">
-    </select>
-    <select class="u-full-width" id="ingredient2"></select>
-    <select class="u-full-width" id="ingredient3"></select>
-    <button class="button-74" role="button" id="gobtn">Go!</button></header></div>
+      <h6>Recipe Searcher</h6>
+      <header>
+        <div class="categories">
+          <label for="categories">Choose by Category<br> (14 available)</label>
+          <select class="u-full-width" id="categorySelect"></select>
+          <button class="button-74" role="button" id="goCategoryBtn">Go!</button>
+        </div>
+      </header>
+      <header>
+      <div id="labelIngredients" class="ingredients">
+        <label for="ingredients">Choose an ingredient: <br> (574 available)</label>
+          <select class="u-full-width" id="ingredient1"></select>
+          <select class="u-full-width" id="ingredient2"></select>
+          <select class="u-full-width" id="ingredient3"></select>
+        <button class="button-74" role="button" id="gobtn">Go!</button>
+       </div>
+      </header>
+
+
+
+
+    </div>
     <h3 class="h3" id="h3">Choose your recipe:</h3>
     <h4 id="norecipes">No Recipes Found</h4>
     <ul class="mealList" id="mealList"></ul>
