@@ -1,28 +1,32 @@
 const app = document.getElementById('root')
 let request = new XMLHttpRequest()
 let request2 = new XMLHttpRequest()
+let request3 = new XMLHttpRequest()
+let request4 = new XMLHttpRequest()
 const container = document.createElement('div')
 container.setAttribute('class', 'container')
 app.appendChild(container)
 const select1 = document.getElementById('ingredient1');
-const select3 = document.getElementById('ingredient3');
 const select2 = document.getElementById('ingredient2');
+const select3 = document.getElementById('ingredient3');
+const categorySelect = document.getElementById('categorySelect');
 const mealList = document.getElementById('mealList');
 const get_meal_btn = document.getElementById('gobtn');
+const get_category_btn = document.getElementById('goCategoryBtn');
 const chooseRecipeText = document.getElementById('h3');
 const noRecipesAlert = document.getElementById('norecipes');
 
 
+
+
+/// Ingredient fetch and create ingredient list ///
 request.open('GET', 'https://www.themealdb.com/api/json/v1/1/list.php?i=list', true)
-
-
 request.onload = function () {
   var data = JSON.parse(this.response);
   let options = [];
   if (request.status >= 200 && request.status < 400) {
     for (let i=0; i<data.meals.length; i++) {
 		options.push(`<option value='${data.meals[i].strIngredient}'>${data.meals[i].strIngredient}</option>`)
-		
 	}
   } else {
     const errorMessage = document.createElement('marquee')
@@ -34,30 +38,32 @@ request.onload = function () {
   select3.innerHTML = options;
   select2.innerHTML = options;
 }
-
 request.send()
 
 
-//// TESTS //////
+/// Category fetch and create Category list ///
+request3.open('GET', 'https://www.themealdb.com/api/json/v1/1/list.php?c=list', true)
+request3.onload = function () {
+	var data = JSON.parse(this.response);
+	let categoryOptions = [];
+	if (request3.status >= 200 && request3.status < 400) {
+	  for (let i=0; i<data.meals.length; i++) {
+		categoryOptions.push(`<option value='${data.meals[i].strCategory}'>${data.meals[i].strCategory}</option>`)
+	  }
+	} else {
+	  const errorMessage = document.createElement('marquee')
+	  errorMessage.textContent = `Gah, it's not working!`
+	  app.appendChild(errorMessage)
+	}
+	categoryOptions.unshift('<option value="">Select a category...</option>')
+	categorySelect.innerHTML = categoryOptions ;
+  }
+request3.send()
+  
 
-// get_meal_btn.addEventListener('click', () => {
-//   const mealRequest = document.querySelector('#ingredients').value.replace(/ /g,"_");
-//   const mealOptions = [];
 
 
-//   for (let i=0; i<15; i++) {
-//   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealRequest}`)
-// 	.then(response => response.json())
-// 	.then(data => mealOptions.push(`<li>${data.meals[i].strMeal}</li>`)) 
-// }
-//   console.log(mealOptions)
-//   setTimeout (mealList.innerHTML = mealOptions, 3000)
-// });
-
-
-
-
-// Meal fetch and meal list creation // fetchData(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealRequest}`)
+// Ingredients to Meal fetch and meal list creation // fetchData(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealRequest}`)
 
 
 get_meal_btn.addEventListener('click', () => {
@@ -68,10 +74,11 @@ get_meal_btn.addEventListener('click', () => {
   	if (ingredient1 !== "") {combinedIngredients.push(ingredient1)}
 	if (ingredient2 !== "") {combinedIngredients.push(ingredient2)}
 	if (ingredient3 !== "") {combinedIngredients.push(ingredient3)}
-  console.log(combinedIngredients.join(','))
+
+  const uniqueIngredients = new Set(combinedIngredients)
   const mealOptions = [];
 
-  request2.open('GET', `https://www.themealdb.com/api/json/v2/9973533/filter.php?i=${combinedIngredients.join(',')}`, true)
+  request2.open('GET', `https://www.themealdb.com/api/json/v2/9973533/filter.php?i=${[...uniqueIngredients].join(',')}`, true)
   request2.send()
   request2.onload = function () {
     var data = JSON.parse(this.response);
@@ -103,6 +110,49 @@ get_meal_btn.addEventListener('click', () => {
 });
 
 
+
+// Category to Meal fetch and meal list creation // 
+
+
+get_category_btn.addEventListener('click', () => {
+	const selectedCategory = document.querySelector('#categorySelect').value.replace(/ /g,"_");
+	console.log(selectedCategory)
+    const mealOptions = [];
+	request4.open('GET', `https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`, true)
+	request4.send()
+	request4.onload = function () {
+	  var data = JSON.parse(this.response);
+	  
+	  if (request4.status >= 200 && request4.status < 400) {
+		chooseRecipeText.style.display = 'flex';
+		if (data.meals == null) {
+		  noRecipesAlert.style.display = 'flex';
+		  mealList.style.display = 'none';
+		  container.style.display = 'none';
+		  container.innerHTML = '';
+		}
+		if (data.meals) {
+		  noRecipesAlert.style.display = 'none';
+		  mealList.style.display = 'block'
+		  container.style.display = 'flex'
+		}
+		for (let i=0; i<data.meals.length; i++) {
+		  mealOptions.push(`<button class="button-54" onclick="createMeal(${data.meals[i].idMeal})">${data.meals[i].strMeal}</button>`)
+	  }
+	  } else {
+		const errorMessage = document.createElement('marquee')
+		errorMessage.textContent = `Gah, it's not working!`
+		app.appendChild(errorMessage)
+	  }
+	  mealList.innerHTML = mealOptions.join( "" );
+	}
+	
+  });
+
+
+
+
+// Display selected meal instructions and picture // 
 
 async function createMeal(qmeal) {
 

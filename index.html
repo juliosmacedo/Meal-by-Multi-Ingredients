@@ -2,6 +2,9 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Recipe Seacher with ingredients filter and category browser">
+<meta name="keywords" content="Recipes, meals, food">
+<meta name="author" content="Julio Macedo">
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -15,14 +18,30 @@
 
   <body>
     <div class="headerdiv" >
-    <h6>Recipe Searcher</h6>
-    <header>
-    <label for="ingredients">Choose an ingredient: <br> (574 available)</label>
-    <select class="u-full-width" id="ingredient1">
-    </select>
-    <select class="u-full-width" id="ingredient2"></select>
-    <select class="u-full-width" id="ingredient3"></select>
-    <button class="button-74" role="button" id="gobtn">Go!</button></header></div>
+      <h6>Recipe Searcher</h6>
+      <header>
+        <div class="categories">
+          <label for="categories"> <strong>Choose by Category:</strong><br> (14 available)</label>
+          <select class="u-full-width" id="categorySelect"></select>
+          <button class="button-74" role="button" id="goCategoryBtn">Go!</button>
+        </div>
+      </header>
+      <header>
+      <div id="labelIngredients" class="ingredients">
+        <label for="ingredients"> <strong>Choose your ingredients:</strong> <br> (574 available)</label>
+          <div id="ingredientsWrapper">
+            <select class="u-full-width" id="ingredient1"></select>
+            <select class="u-full-width" id="ingredient2"></select>
+            <select class="u-full-width" id="ingredient3"></select>
+          </div>
+        <button class="button-74" role="button" id="gobtn">Go!</button>
+       </div>
+      </header>
+
+
+
+
+    </div>
     <h3 class="h3" id="h3">Choose your recipe:</h3>
     <h4 id="norecipes">No Recipes Found</h4>
     <ul class="mealList" id="mealList"></ul>
